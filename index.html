@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+    <link rel="stylesheet" href="scss/style.css">
+    <link rel="icon" href="img/G-logo-03.png" type="image/png">
+    <title>Giuliana Giardina CV</title>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+    	  //set animation timing
+    	    var animationDelay = 2600,
+    		//clip effect
+    		revealDuration = 800,
+    		revealAnimationDelay = 150;
+
+    	  initHeadline();
+        function initHeadline() {
+      		//initialise headline animation
+      		animateHeadline($('.cd-headline'));
+      	}
+
+    	  function animateHeadline($headlines) {
+    		var duration = animationDelay;
+    		$headlines.each(function(){
+    			var headline = $(this);
+
+    		//trigger animation
+    			setTimeout(function(){ hideWord( headline.find('.is-visible').eq(0) ) }, duration);
+    		});
+    	 }
+
+    	  function hideWord($word) {
+    		    var nextWord = takeNext($word);
+
+      		if($word.parents('.cd-headline').hasClass('type')) {
+      			var parentSpan = $word.parent('.cd-words-wrapper');
+      			parentSpan.addClass('selected').removeClass('waiting');
+      			setTimeout(function(){
+      				parentSpan.removeClass('selected');
+      				$word.removeClass('is-visible').addClass('is-hidden').children('i').removeClass('in').addClass('out');
+      			}, selectionDuration);
+      			setTimeout(function(){ showWord(nextWord, typeLettersDelay) }, typeAnimationDelay);
+
+      		} else if($word.parents('.cd-headline').hasClass('letters')) {
+      			var bool = ($word.children('i').length >= nextWord.children('i').length) ? true : false;
+      			hideLetter($word.find('i').eq(0), $word, bool, lettersDelay);
+      			showLetter(nextWord.find('i').eq(0), nextWord, bool, lettersDelay);
+
+      		}  else if($word.parents('.cd-headline').hasClass('clip')) {
+      			$word.parents('.cd-words-wrapper').animate({ width : '2px' }, revealDuration, function(){
+      				switchWord($word, nextWord);
+      				showWord(nextWord);
+      			});
+
+      		} else if ($word.parents('.cd-headline').hasClass('loading-bar')){
+      			$word.parents('.cd-words-wrapper').removeClass('is-loading');
+      			switchWord($word, nextWord);
+      			setTimeout(function(){ hideWord(nextWord) }, barAnimationDelay);
+      			setTimeout(function(){ $word.parents('.cd-words-wrapper').addClass('is-loading') }, barWaiting);
+
+      		} else {
+      			switchWord($word, nextWord);
+      			setTimeout(function(){ hideWord(nextWord) }, animationDelay);
+      		}
+      	}
+
+      	function takeNext($word) {
+      		return (!$word.is(':last-child')) ? $word.next() : $word.parent().children().eq(0);
+      	}
+
+      	function takePrev($word) {
+      		return (!$word.is(':first-child')) ? $word.prev() : $word.parent().children().last();
+      	}
+
+      	function switchWord($oldWord, $newWord) {
+      		$oldWord.removeClass('is-visible').addClass('is-hidden');
+      		$newWord.removeClass('is-hidden').addClass('is-visible');
+      	}
+      });
+    </script>
+  </head>
+
+
+  <body>
+    <div class="menu">
+      <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+          <img src="img/Giuliana-01.png" height="130" alt="G">
+        </div>
+
+        <div class="sidebar-nav">
+          <ul class="list-unstyled components">
+            <li><a class="nav-link active" href="#home">Home</a></li>
+            <li><a class="nav-link" href="#topSkills">Top Skills</a></li>
+            <li><a class="nav-link" href="#aboutMe">About me</a></li>
+            <li><a class="nav-link" href="#contacts">Contacts</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="content">
+      <section id="home">
+        <div class="container col-12 social padding">
+      		<a href="https://www.facebook.com/giuliana.giardina.77/" target="_blank"><i class="fab fa-facebook"></i></a>
+      		<a href="https://www.instagram.com/giugiardina/" target="_blank"><i class="fab fa-instagram" target="_blank"></i></a>
+      		<a href="https://www.linkedin.com/in/giuliana-giardina-179578112/" target="_blank"><i class="fab fa-linkedin" target="_blank"></i></a>
+      	</div>
+
+        <div id="animatedHeader" class="container d-flex align-items-center padding">
+          <div class="cd-intro">
+        		<h1 class="cd-headline rotate-1">
+        			<span><small>Hi there,</small><br>I am a</span>
+        			<span class="cd-words-wrapper">
+        				<b class="is-visible">Graphic Designer</b>
+        				<b>Digital Comms Officer</b>
+        				<b>Front-end Developer</b>
+                <b>GoogleAds Specialist</b>
+        			</span>
+        		</h1>
+          </div>
+        </div>
+
+        <div id="contact" class="container-fluid padding">
+          <div class="row">
+            <div class="col-md-auto">
+              <h6>Email</h6>
+              <p><a href="mailto:giuliana.giardina90@gmail.com">giuliana.giardina90@gmail.com</a></p>
+            </div>
+
+            <div class="col-md-auto">
+              <h6>Phone</h6>
+              <p><a href="tel:+3275786619">+327 578 6619</a></p>
+            </div>
+
+            <div class="col-md-auto">
+              <h6>Location</h6>
+              <p>Florence, Italy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="topSkills">
+        <div class="container">
+          <hr>
+          <div class="container-fluid">
+            <h2>Top Skills</h2>
+            <p>I am a <b>creative thinker</b> and <b>team-worker</b> with <b>strong communication skills</b> and sympathy, determined to optimally managing resources and recognizing and fulfilling the individual needs.I am able to <b>perform under pressure</b>, effectively managing time and resources.</p>
+            <p>I am passionate about my work and about creativity in all its forms, I love designing digital products and helping companies to develop their ideas. <br> I have a <b>steady source of motivation</b> that drives me to do my best. I’m a <b>people-person</b>. I love meeting new people and learning about their lives and their backgrounds. I can almost always find common ground with strangers, and I like making people feel comfortable in my presence. I find this skill is especially helpful when kicking off projects with new clients.</p>
+            <p>I am born in Palermo, worked in The Hague for one year and currently based in Florence. Now, I looking for <b>new opportunities</b> to grow, able to keep me on my toes with constant stimulation.</p>
+          </div>
+
+            <div class="row">
+              <!-- TopSkills -->
+              <div class="list col-md-4 col-sm-12">
+                <h4>Languages</h4>
+                    <ul class="list-unstyled">
+                      <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1200px-Flag_of_Italy.svg.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Italian <small>Mothertongue</small></h6></li>
+                      <li><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>English <small>C1</small></h6></li>
+                      <li><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1200px-Flag_of_France.svg.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>French <small>B1</small></h6></li>
+                      <li><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>German <small>B1</small></h6></li>
+                    </ul>
+              </div>
+              <!-- Tools -->
+              <div class="list col-md-4 col-sm-12">
+                <h4>Tools</h4>
+                    <ul class="list-unstyled">
+                      <li><img src="https://socrates.nl/wp-content/uploads/2018/01/1024px-adobe_illustrator_cc_icon.svg.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Illustrator</h6></li>
+                      <li><img src="https://www.fineartprinted.com/wp-content/uploads/2019/01/1051px-Adobe_Photoshop_CC_icon.svg_.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Photoshop</h6></li>
+                      <li><img src="https://cdn.worldvectorlogo.com/logos/adobe-indesign-cs6.svg" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>InDesign</h6></li>
+                      <li><img src="https://thepresetdesign.com/wp-content/uploads/2020/06/LR.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Lightroom</h6></li>
+                      <li><img src="https://image.flaticon.com/icons/png/512/59/59137.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Wordpress</h6></li>
+                      <li><img src="https://www.clipartmax.com/png/middle/326-3265266_google-ads-logo-png-google-ads-icon.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Google Ads</h6></li>
+                      <li><img src="https://cdn3.iconfinder.com/data/icons/popular-services-brands-vol-2/512/microsoft-office-512.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Microsoft Office</h6></li>
+                      <li><img src="https://api.faviconkit.com/mailup.it/144" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>MailUp</h6></li>
+                      <li><img src="https://alternative.me/media/256/mailchimp-icon-qaij6fzyjibeqxr6-c.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>MailChimp</h6></li>
+                    </ul>
+              </div>
+              <!-- Current Learning -->
+              <div class="list col-md-4 col-sm-12">
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Currently Learning
+                  </button>
+                  <div class="dropdown-menu">
+                    <ul class="list-unstyled">
+                      <li><img src="https://images.vexels.com/media/users/3/166383/isolated/preview/6024bc5746d7436c727825dc4fc23c22-html-programming-language-icon-by-vexels.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>HTML5</h6></li>
+                      <li><img src="https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/css/css.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>CSS3</h6></li>
+                      <li><img src="https://cdn.iconscout.com/icon/free/png-256/javascript-2038874-1720087.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Javascript</h6></li>
+                      <li><img src="https://cdn.iconscout.com/icon/free/png-512/php-27-226042.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>PHP</h6></li>
+                      <li><img src="https://camo.githubusercontent.com/f85f882cb31eeaeee657ec955313015c30378e8f56c3dc2f06933b617a276cfd/68747470733a2f2f77372e706e6777696e672e636f6d2f706e67732f3734372f3739382f706e672d7472616e73706172656e742d6d7973716c2d6c6f676f2d6d7973716c2d64617461626173652d7765622d646576656c6f706d656e742d636f6d70757465722d736f6674776172652d646f6c7068696e2d6d6172696e652d6d616d6d616c2d616e696d616c732d746578742d7468756d626e61696c2e706e67" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>MySLQ</h6></li>
+                      <li><img src="https://image.flaticon.com/icons/png/512/919/919825.png" style="display:inline; object-fit:cover; border-radius:3px; width:19.536px; height:19.536px; transition:opacity 100ms ease-out 0s;"><h6>Node.js</h6></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <section id="aboutMe">
+        <div class="container">
+          <div class="row">
+            <div id="life" class="col-md-6 padding">
+              <h2>Why I am</h2>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Mar 2021 – Nov 2021</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Web Communication: user experience / SEO / Multimedia</h5>
+                  <h6>IED – European Institute of Design</h6>
+                  <p>Master Course</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Dec 2020 – Jul 2021</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Web and APP Development</h5>
+                  <h6>Start2impact</h6>
+                  <p>Postgraduate Course</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Sep 2012 – Feb 2017</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Communication studies for media and institutions</h5>
+                  <h6>University of Palermo</h6>
+                  <p>Bachelor's degree</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="experience" class="col-md-6 padding">
+              <h2>What I am</h2>
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Oct 2020 – present</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Digital Communications Officer</h5>
+                  <h6><a href="https://www.oleummazzola.com" target="_blank">Oleum Mazzola</a></h6>
+                  <p>Palermo, Italy</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Jul 2020 – present</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Digital Communications Officer</h5>
+                  <h6><a href="https://www.heliogiardina.com" target="_blank">Helio Creative Studio</a></h6>
+                  <p>Palermo, Italy</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Oct 2018 – present</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Event&Communications Officer</h5>
+                  <h6><a href="https://www.oic.it" target="_blank">OIC Group</a></h6>
+                  <p>Palermo, Italy</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p>Dec 2017 – May 2018</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Media&Graphic Design Support</h5>
+                  <h6><a href="https://www.europol.europa.eu" target="_blank">Europol – European Union’s Law Enforcement Agency</a></h6>
+                  <p>The Hague, The Netherlands</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <p>May 2015 – Sep 2017</p>
+                </div>
+                <div class="col-md-8">
+                  <h5>Junior Event Officer</h5>
+                  <h6><a href="https://www.bibagroup.it" target="_blank">Biba Group</a></h6>
+                  <p>Palermo, Italy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacts">
+        <div class="container">
+          <h2>Get in touch!</h2>
+          <div class="col-md-4">
+            <p>Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+            <ul class="list-unstyled">
+              <li><img src="img/contacts-01.svg" height="20" alt="email"><a href="mailto:giuliana.giardina90@gmail.com">giuliana.giardina90@gmail.com</a></li>
+              <li><img src="img/contacts-03.svg" height="20" alt="phone"><a href="tel:+3275786619">+327 578 6619</a></li>
+              <li><img src="img/contacts-02.svg" height="22" alt="location"><p>Florence, Italy</p></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form">
+          <form>
+            <div class="form-section">
+              <h4>Write me!</h4>
+            </div>
+
+            <div class="form-group">
+              <label class="form-control-label sr-only" for="inputName">Name</label>
+              <input type="text" class="form-control" id="inputName" placeholder="Your name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-control-label sr-only" for="inputEmail">Email</label>
+              <input class="form-control" type="email" placeholder="Your email" id="inputEmail" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-control-label sr-only" for="inputText">Text</label>
+              <textarea class="form-control" id="inputText" rows="3" placeholder="Your message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">SEND</button>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div class="center">
+          <p>made with &#x2661; by Giuliana Giardina | Update Jan 2021</p>
+        </div>
+      </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').toggleClass('active');
+              $('#overlay').toggleClass('active');
+          });
+
+          $('#dismiss, #overlay').on('click', function () {
+              $('#overlay').removeClass('active');
+              $('#sidebar').removeClass('active');
+          });
+      });
+    </script>
+  </body>
+</html>
